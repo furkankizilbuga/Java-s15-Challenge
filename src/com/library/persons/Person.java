@@ -7,32 +7,32 @@ import java.util.Set;
 public abstract class Person {
 
     private String name;
-    private Set<Book> books;
+    private Set<Book> booksInPossession;
 
-    public Person(String name, Set<Book> books) {
+    public Person(String name, Set<Book> booksInPossession) {
         this.name = name;
-        this.books = books;
+        this.booksInPossession = booksInPossession;
     }
 
     public String getName() {
         return name;
     }
 
-    public Set<Book> getBooks() {
-        return books;
+    public Set<Book> getBooksInPossession() {
+        return booksInPossession;
     }
 
-    public void setBooks(Set<Book> books) {
-        this.books = books;
+    public void setBooksInPossession(Set<Book> books) {
+        this.booksInPossession = books;
     }
 
-    public void addBook(Book book) {
-        books.add(book);
+    public void addBookInPossession(Book book) {
+        booksInPossession.add(book);
     }
 
     public String booksToString() {
         String message = "";
-        for(Book book : books) {
+        for(Book book : booksInPossession) {
             if(book != null) {
                 message += book.getTitle();
             }
@@ -40,4 +40,11 @@ public abstract class Person {
         return message;
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", booksInPossession=" + booksInPossession +
+                '}';
+    }
 }
