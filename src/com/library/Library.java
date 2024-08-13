@@ -1,15 +1,14 @@
 package com.library;
 
 import com.library.books.Book;
+import com.library.enums.Status;
 import com.library.persons.Author;
 import com.library.persons.Person;
 import com.library.persons.Reader;
 
 import java.time.LocalDate;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Library {
 
@@ -57,7 +56,7 @@ public class Library {
         if(!books.contains(book)) {
             System.out.println("Ödünç almaya çalıştığınız kitap bulunmamaktadır.");
         } else {
-            book.updateStatus();
+            book.setStatus(Status.IN_USE);
 
             LocalDate lendDate = LocalDate.now();
             book.setDateOfPurchase(lendDate);
@@ -65,6 +64,60 @@ public class Library {
             person.addBookInPossession(book);
             System.out.println("Kitap başarıyla ödünç verilmiştir.");
         }
+    }
+
+
+    public static void updateBook(Book book, long bookId) {
+        book.setBookId(bookId);
+    }
+
+    public static void updateBook(Book book, String title) {
+        book.setTitle(title);
+    }
+
+    public static void updateBook(Book book, double price) {
+        book.setPrice(price);
+    }
+
+    public static void updateBook(Book book, Status status) {
+        book.setStatus(status);
+    }
+
+    public static void updateBook(Book book, int edition) {
+        book.setEdition(edition);
+    }
+
+    public static void updateBook(Book book, LocalDate dateOfPurchase) {
+        book.setDateOfPurchase(dateOfPurchase);
+    }
+
+    public static Optional<Book> findBook(long bookId) {
+        return books.stream().filter(book -> book.getBookId() == bookId).findFirst();
+    }
+
+    public static Optional<Book> findBook(String title) {
+        return books
+                .stream()
+                .filter(book -> book.getTitle().equalsIgnoreCase(title))
+                .findFirst();
+    }
+
+    public static Set<Book> findBook(Person author) {
+        /*
+        if (!(author instanceof Author)) {
+            System.out.println("Lütfen geçerli bir yazar ismi giriniz.");
+            return new LinkedHashSet<>();
+        }
+        */
+
+        if (!(author instanceof Author)) {
+            throw new IllegalArgumentException("Lütfen geçerli bir yazar ismi giriniz.");
+        }
+
+        return books
+                .stream()
+                .filter(book -> book.getAuthors().contains(author))
+                .collect(Collectors.toSet());
     }
 
 

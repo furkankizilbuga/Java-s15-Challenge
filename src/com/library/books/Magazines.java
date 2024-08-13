@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class Magazines extends Book {
 
-    public Magazines(long bookId, Set<Person> authors, String title, double price, double edition) {
+    public Magazines(long bookId, Set<Person> authors, String title, double price, int edition) {
         super(bookId, authors, title, price, edition);
     }
 }
