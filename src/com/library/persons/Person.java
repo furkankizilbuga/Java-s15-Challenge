@@ -31,13 +31,19 @@ public abstract class Person {
     }
 
     public String booksToString() {
-        String message = "";
+        StringBuilder message = new StringBuilder();
+        int index = 0;
         for(Book book : booksInPossession) {
             if(book != null) {
-                message += book.getTitle();
+                if(index > 0) {
+                    message.append(", ");
+                }
+                message.append(book.getTitle());
             }
+            index++;
         }
-        return message;
+
+        return message.toString();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.library;
 
 import com.library.books.Book;
+import com.library.books.Literature;
 import com.library.enums.Status;
 import com.library.persons.Author;
 import com.library.persons.Person;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Library {
+public abstract class Library {
 
     private static Set<Book> books = new LinkedHashSet<>();
     private static Map<Reader, Set<Book>> readers = new LinkedHashMap<>();
@@ -18,6 +19,10 @@ public class Library {
 
     public static Set<Book> getBooks() {
         return books;
+    }
+
+    public static Map<Author, Set<Book>> getAuthors() {
+        return authors;
     }
 
     public static Map<Reader, Set<Book>> getReaders() {
@@ -29,7 +34,7 @@ public class Library {
             //Set olduğu için zaten 2.kez eklenmiyor ancak feedback vermek için bu şekilde yazdım.
 
             if(!books.contains(book)) {
-                System.out.println("Kitap sisteme eklenmiştir.");
+                //System.out.println("Kitap sisteme eklenmiştir: " + book.getTitle());
                 books.add(book);
             }
             else System.out.println("Eklemeye çalıştığınız kitap zaten mevcut.");
@@ -56,13 +61,17 @@ public class Library {
         if(!books.contains(book)) {
             System.out.println("Ödünç almaya çalıştığınız kitap bulunmamaktadır.");
         } else {
-            book.setStatus(Status.IN_USE);
+            if(person.getBooksInPossession().size() >= 5) {
+                System.out.println("En fazla 5 kitap ödünç alabilirsiniz.");
+            } else {
+                book.setStatus(Status.IN_USE);
 
-            LocalDate lendDate = LocalDate.now();
-            book.setDateOfPurchase(lendDate);
+                LocalDate lendDate = LocalDate.now();
+                book.setDateOfPurchase(lendDate);
 
-            person.addBookInPossession(book);
-            System.out.println("Kitap başarıyla ödünç verilmiştir.");
+                person.addBookInPossession(book);
+                System.out.println("Kitap başarıyla ödünç verilmiştir.");
+            }
         }
     }
 
@@ -118,6 +127,16 @@ public class Library {
                 .stream()
                 .filter(book -> book.getAuthors().contains(author))
                 .collect(Collectors.toSet());
+    }
+
+    public static Set<Book> findBook(Class type) {
+        Set<Book> categorizedBooks = new HashSet<>();
+        for (Book book : books) {
+            if (type.isInstance(book)) {
+                categorizedBooks.add(book);
+            }
+        }
+        return categorizedBooks;
     }
 
 

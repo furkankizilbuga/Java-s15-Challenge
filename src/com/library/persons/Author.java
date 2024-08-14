@@ -21,6 +21,22 @@ public class Author extends Person {
         booksWritten.add(book);
     }
 
+    public String writtenBooksToString() {
+        StringBuilder message = new StringBuilder();
+        int index = 0;
+        for(Book book : booksWritten) {
+            if(book != null) {
+                if(index > 0) {
+                    message.append(", ");
+                }
+                message.append(book.getTitle());
+            }
+            index++;
+        }
+
+        return message.toString();
+    }
+
     @Override
     public Set<Book> getBooksInPossession() {
         return super.getBooksInPossession();
@@ -31,7 +47,7 @@ public class Author extends Person {
         return "Author{" +
                 " Name: " + getName() +
                 ", Books in possession: " + getBooksInPossession() +
-                ", Books written: " + booksWritten +
+                ", Books written: " + writtenBooksToString() +
                 '}';
     }
 }
