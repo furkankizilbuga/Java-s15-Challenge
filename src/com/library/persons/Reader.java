@@ -26,7 +26,7 @@ public class Reader extends Person implements ReaderMethods {
         if(!Library.getBooks().contains(book)) {
             System.out.println("Kütüphanemiz aradığınız kitaba sahip değil.");
         } else if(book.getStatus() == Status.IN_USE) {
-            System.out.println("İstediğiniz kitap şu anda başkası tarafından kullanılıyor.");
+            System.out.println("İstediğiniz kitap şu anda başkası tarafından kullanılıyor: " + book.getOwner().getName());
         } else {
             if(points >= 2) {
                 //this.getBooks().add(book);
@@ -49,7 +49,7 @@ public class Reader extends Person implements ReaderMethods {
         if(!Library.getBooks().contains(book)) {
             System.out.println("Ödünç almaya çalıştığınız kitap bulunmamaktadır.");
         } else if(book.getStatus() == Status.IN_USE) {
-            System.out.println("İstediğiniz kitap şu anda başkası tarafından kullanılıyor.");
+            System.out.println("İstediğiniz kitap şu anda başkası tarafından kullanılıyor: " + book.getOwner().getName());
         } else {
             if(getBooks().size() >= 5) {
                 System.out.println("En fazla 5 kitap ödünç alabilirsiniz.");
@@ -62,6 +62,7 @@ public class Reader extends Person implements ReaderMethods {
 
                     points -= 1;
                     getBooks().add(book);
+                    book.setOwner(this);
 
                     Library.getReaders().put(this, getBooks());
 

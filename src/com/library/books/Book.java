@@ -4,6 +4,7 @@ import com.library.Library;
 import com.library.persons.Author;
 import com.library.enums.Status;
 import com.library.persons.Person;
+import com.library.persons.Reader;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -17,6 +18,7 @@ public abstract class Book {
     private Status status;
     private int edition;
     private LocalDate dateOfPurchase;
+    private Reader owner;
 
     public Book(long bookId, Set<Person> authors, String title, double price, int edition) {
         this.bookId = bookId;
@@ -31,7 +33,13 @@ public abstract class Book {
                 ((Author) author).writeBook(this);
             }
         }
+    }
 
+    public Book getBook() {
+        return this;
+    }
+    public Reader getOwner() {
+        return owner;
     }
 
     public String getTitle() {
@@ -52,6 +60,10 @@ public abstract class Book {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public void setOwner(Reader owner) {
+        this.owner = owner;
     }
 
     public void setDateOfPurchase(LocalDate dateOfPurchase) {
