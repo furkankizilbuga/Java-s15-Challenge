@@ -57,25 +57,6 @@ public abstract class Library {
         System.out.println("Kitap sistemden silinmiştir.");
     }
 
-    public static void lendBook(Person person, Book book) {
-        if(!books.contains(book)) {
-            System.out.println("Ödünç almaya çalıştığınız kitap bulunmamaktadır.");
-        } else {
-            if(person.getBooksInPossession().size() >= 5) {
-                System.out.println("En fazla 5 kitap ödünç alabilirsiniz.");
-            } else {
-                book.setStatus(Status.IN_USE);
-
-                LocalDate lendDate = LocalDate.now();
-                book.setDateOfPurchase(lendDate);
-
-                person.addBookInPossession(book);
-                System.out.println("Kitap başarıyla ödünç verilmiştir.");
-            }
-        }
-    }
-
-
     public static void updateBook(Book book, long bookId) {
         book.setBookId(bookId);
     }
@@ -112,12 +93,12 @@ public abstract class Library {
     }
 
     public static Set<Book> findBook(Person author) {
-        /*
-        if (!(author instanceof Author)) {
+
+        /*if (!(author instanceof Author)) {
             System.out.println("Lütfen geçerli bir yazar ismi giriniz.");
             return new LinkedHashSet<>();
-        }
-        */
+        }*/
+
 
         if (!(author instanceof Author)) {
             throw new IllegalArgumentException("Lütfen geçerli bir yazar ismi giriniz.");

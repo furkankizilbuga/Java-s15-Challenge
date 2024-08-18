@@ -32,8 +32,6 @@ public abstract class Book {
             }
         }
 
-        Library.addBookStore(this); //Kaldırılabilir
-
     }
 
     public String getTitle() {
