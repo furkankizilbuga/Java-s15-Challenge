@@ -13,6 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
         Person furkan = new Reader("Furkan", new LinkedHashSet<>());
+        Person hasan = new Reader("Hasan", new LinkedHashSet<>());
         Person shakespeare = new Author("Shakespeare", new LinkedHashSet<>());
         Person shelley = new Author("Mary Shelley", new LinkedHashSet<>());
         Book hamlet = new Literature(1, new LinkedHashSet<>(Set.of(shakespeare, furkan)), "Hamlet", 10, 1);
@@ -22,18 +23,22 @@ public class Main {
         Book journal = new Journals(5, new LinkedHashSet<>(Set.of(shelley)), "journalExample", 10, 1);
         Book dergi = new Journals(6, new LinkedHashSet<>(Set.of(shelley)), "Dergi", 10, 1);
 
-        System.out.println(Library.getReaders());
 
 
-
-
-
-
+        ((Reader)furkan).borrowBook(hamlet);
+        System.out.println(Library.getBooks());
+        ((Reader)hasan).borrowBook(hamlet);
+        System.out.println(hasan);
+        System.out.println(furkan);
 
 
 
 
     }
+
+    /*public static void purchaseBook(Person person, Book book) {
+        ((Reader) person).purchaseBook(book);
+    }*/
 
     /*
 
