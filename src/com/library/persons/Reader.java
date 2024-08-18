@@ -15,6 +15,7 @@ public class Reader extends Person implements ReaderMethods {
     public Reader(String name, Set<Book> books) {
         super(name, books);
         points = 5;
+        Library.getReaders().put(this, books);
     }
 
     public int getPoints() {

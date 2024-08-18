@@ -88,7 +88,7 @@ public abstract class Library {
     public static Optional<Book> findBook(String title) {
         return books
                 .stream()
-                .filter(book -> book.getTitle().equalsIgnoreCase(title))
+                .filter(book -> book.getTitle().trim().equalsIgnoreCase(title))
                 .findFirst();
     }
 
@@ -120,7 +120,18 @@ public abstract class Library {
         return categorizedBooks;
     }
 
-
+    public static Reader checkUser(String name) {
+        name = name.trim();
+        Set<Reader> keys = getReaders().keySet();
+        for(Reader key : keys) {
+            if(key.getName().trim().equalsIgnoreCase(name)) {
+                System.out.println("Kullanıcı mevcut.");
+                return key;
+            }
+        }
+        System.out.println("Kullanıcı bulunamadı.");
+        return new Reader(null, new LinkedHashSet<>());
+    }
 
 
 }

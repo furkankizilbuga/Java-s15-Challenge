@@ -1,3 +1,4 @@
+import com.library.Console;
 import com.library.Library;
 import com.library.books.Book;
 import com.library.books.Journals;
@@ -23,6 +24,8 @@ public class Main {
         Book journal = new Journals(5, new LinkedHashSet<>(Set.of(shelley)), "journalExample", 10, 1);
         Book dergi = new Journals(6, new LinkedHashSet<>(Set.of(shelley)), "Dergi", 10, 1);
 
+        //Console.start();
+        System.out.println(Library.findBook("hamlet"));
 
 
     }
