@@ -2,6 +2,7 @@ package com.library.persons;
 
 import com.library.books.Book;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public abstract class Person {
@@ -9,9 +10,9 @@ public abstract class Person {
     private String name;
     private Set<Book> books;
 
-    public Person(String name, Set<Book> books) {
+    public Person(String name) {
         this.name = name;
-        this.books = books;
+        this.books = new LinkedHashSet<>();
     }
 
     public String getName() {
@@ -20,6 +21,10 @@ public abstract class Person {
 
     public Set<Book> getBooks() {
         return books;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setBooks(Set<Book> books) {

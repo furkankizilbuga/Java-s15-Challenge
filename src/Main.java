@@ -13,10 +13,10 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        Person furkan = new Reader("Furkan", new LinkedHashSet<>());
-        Person hasan = new Reader("Hasan", new LinkedHashSet<>());
-        Person shakespeare = new Author("Shakespeare", new LinkedHashSet<>());
-        Person shelley = new Author("Mary Shelley", new LinkedHashSet<>());
+        Person furkan = new Reader("Furkan");
+        Person hasan = new Reader("Hasan");
+        Person shakespeare = new Author("Shakespeare");
+        Person shelley = new Author("Mary Shelley");
         Book hamlet = new Literature(1, new LinkedHashSet<>(Set.of(shakespeare, furkan)), "Hamlet", 10, 1);
         Book lear = new Literature(2, new LinkedHashSet<>(Set.of(shakespeare)), "King Lear", 10, 1);
         Book frankenstein = new Literature(3, new LinkedHashSet<>(Set.of(shelley)), "Frankenstein", 10, 1);
@@ -24,8 +24,8 @@ public class Main {
         Book journal = new Journals(5, new LinkedHashSet<>(Set.of(shelley)), "journalExample", 10, 1);
         Book dergi = new Journals(6, new LinkedHashSet<>(Set.of(shelley)), "Dergi", 10, 1);
 
-        //Console.start();
-        System.out.println(Library.findBook("hamlet"));
+        Console.start();
+
 
 
     }

@@ -130,7 +130,12 @@ public abstract class Library {
             }
         }
         System.out.println("Kullanıcı bulunamadı.");
-        return new Reader(null, new LinkedHashSet<>());
+        return new Reader(null);
+    }
+
+    public static void addReader(Reader reader) {
+        //Person vermiyorum çünkü zaten checkUser Reader üzerinden işlem yapıyor. Author gelemez.
+        readers.put(reader, reader.getBooks());
     }
 
 

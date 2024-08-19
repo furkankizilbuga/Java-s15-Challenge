@@ -8,9 +8,8 @@ import java.util.Set;
 
 public class Author extends Person implements AuthorMethods {
 
-    public Author(String name, Set<Book> books) {
-        super(name, books);
-        setBooks(books);
+    public Author(String name) {
+        super(name);
     }
 
     @Override
