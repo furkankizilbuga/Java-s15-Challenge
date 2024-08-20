@@ -1,7 +1,5 @@
 package com.library;
 import com.library.persons.Reader;
-
-import java.util.LinkedHashSet;
 import java.util.Scanner;
 
 public class Console {
@@ -12,8 +10,6 @@ public class Console {
         Reader user = Library.checkUser(name);
         while (true) {
 
-
-
             if (user.getName() != null) {
 
                 System.out.println("""
@@ -22,6 +18,7 @@ public class Console {
                         Kitap teslim etme için: 2
                         Kitap ödünç alma için: 3
                         Puanımı göster: 4
+                        Kitaplarımı göster: 5
                         Çıkmak için: 0""");
 
                 int input = scanner.nextInt();
@@ -60,6 +57,10 @@ public class Console {
                         break;
                     case 4:
                         System.out.println(user.getPoints());
+                        break;
+                    case 5:
+                        if(user.booksToString().isEmpty()) System.out.println("Kitabınız bulunmamaktadır.");
+                        else System.out.println(user.booksToString());
                         break;
                     default:
                         System.out.println("Lütfen geçerli bir işlem seçiniz.");
