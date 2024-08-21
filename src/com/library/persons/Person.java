@@ -3,16 +3,23 @@ package com.library.persons;
 import com.library.books.Book;
 
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public abstract class Person {
 
+    private int id;
     private String name;
     private Set<Book> books;
 
-    public Person(String name) {
+    public Person(int id, String name) {
+        this.id = id;
         this.name = name;
         this.books = new LinkedHashSet<>();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -45,5 +52,17 @@ public abstract class Person {
         }
 
         return message.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person person)) return false;
+        return id == person.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

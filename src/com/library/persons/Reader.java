@@ -3,17 +3,16 @@ package com.library.persons;
 import com.library.Library;
 import com.library.books.Book;
 import com.library.enums.Status;
-import com.library.interfaces.ReaderMethods;
 
 import java.time.LocalDate;
 import java.util.Set;
 
-public class Reader extends Person implements ReaderMethods {
+public class Reader extends Person {
 
     private int points;
 
-    public Reader(String name) {
-        super(name);
+    public Reader(int id, String name) {
+        super(id,name);
         points = 5;
         Library.getReaders().put(this, super.getBooks());
     }
@@ -47,7 +46,7 @@ public class Reader extends Person implements ReaderMethods {
 
     }*/
 
-    @Override
+
     public void purchaseBook(Book book) {
         if(book.getStatus() == Status.IN_USE) {
             System.out.println("İstediğiniz kitap şu anda başkası tarafından kullanılıyor: " + book.getOwner().getName());
@@ -68,7 +67,7 @@ public class Reader extends Person implements ReaderMethods {
 
     }
 
-    @Override
+
     public void borrowBook(Book book) {
         if(book.getStatus() == Status.IN_USE) {
             System.out.println("İstediğiniz kitap şu anda başkası tarafından kullanılıyor: " + book.getOwner().getName());

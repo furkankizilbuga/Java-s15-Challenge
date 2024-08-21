@@ -3,6 +3,8 @@ package com.library;
 import com.library.books.Book;
 import com.library.books.Literature;
 import com.library.enums.Status;
+import com.library.interfaces.findBookInterface;
+import com.library.interfaces.updateBookInterface;
 import com.library.persons.Author;
 import com.library.persons.Person;
 import com.library.persons.Reader;
@@ -16,6 +18,7 @@ public abstract class Library {
     private static Set<Book> books = new LinkedHashSet<>();
     private static Map<Reader, Set<Book>> readers = new LinkedHashMap<>();
     private static Map<Author, Set<Book>> authors = new LinkedHashMap<>();
+
 
     public static Set<Book> getBooks() {
         return books;
@@ -94,15 +97,15 @@ public abstract class Library {
 
     public static Set<Book> findBook(Person author) {
 
-        /*if (!(author instanceof Author)) {
+        if (!(author instanceof Author)) {
             System.out.println("Lütfen geçerli bir yazar ismi giriniz.");
             return new LinkedHashSet<>();
-        }*/
-
-
-        if (!(author instanceof Author)) {
-            throw new IllegalArgumentException("Lütfen geçerli bir yazar ismi giriniz.");
         }
+
+
+        /*if (!(author instanceof Author)) {
+            throw new IllegalArgumentException("Lütfen geçerli bir yazar ismi giriniz.");
+        }*/
 
         return books
                 .stream()
@@ -120,17 +123,16 @@ public abstract class Library {
         return categorizedBooks;
     }
 
-    public static Reader checkUser(String name) {
-        name = name.trim();
+    public static Reader checkUser(int id) {
         Set<Reader> keys = getReaders().keySet();
         for(Reader key : keys) {
-            if(key.getName().trim().equalsIgnoreCase(name)) {
+            if(key.getId() == id) {
                 System.out.println("Kullanıcı mevcut.");
                 return key;
             }
         }
         System.out.println("Kullanıcı bulunamadı.");
-        return new Reader(null);
+        return null;
     }
 
     public static void addReader(Reader reader) {

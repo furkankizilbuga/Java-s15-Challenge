@@ -1,18 +1,23 @@
 package com.library;
 import com.library.persons.Reader;
+
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Console {
     public static void start() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Lütfen isminizi giriniz:");
-        String name = scanner.nextLine();
-        Reader user = Library.checkUser(name);
+        System.out.println("Lütfen kayıtlı olan ID'nizi giriniz:");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        Reader user = Library.checkUser(id);
         while (true) {
 
-            if (user.getName() != null) {
+            if (user != null) {
 
-                System.out.println("""
+                System.out.println(
+                        "Hoşgeldin " + user.getName() + "\n" +
+                        """
                         Lütfen yapmak istediğiniz işlemi seçiniz:\s
                         Kitap satın almak için: 1
                         Kitap teslim etme için: 2
@@ -70,10 +75,14 @@ public class Console {
             } else {
                 System.out.println("Lütfen kayıt olmak için isminizi giriniz:");
                 String newRegister = scanner.nextLine();
-                Reader newMember = new Reader(newRegister);
+                if(Objects.equals(newRegister, "") || newRegister == null || newRegister.equals(" ")) {
+                    System.out.println("Lütfen geçerli bir isim giriniz.");
+                }
+                Reader newMember = new Reader(Library.getReaders().size() + 1, newRegister);
+
                 Library.addReader(newMember);
                 user = newMember;
-
+                System.out.println("ID'niz: " + user.getId());
             }
         }
     }

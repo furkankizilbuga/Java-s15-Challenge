@@ -7,6 +7,7 @@ import com.library.persons.Person;
 import com.library.persons.Reader;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 
 public abstract class Book {
@@ -31,6 +32,7 @@ public abstract class Book {
         for(Person author : authors) {
             if(author instanceof Author) {
                 ((Author) author).writeBook(this);
+                Library.addBookStore(this);
             }
         }
     }
@@ -104,6 +106,18 @@ public abstract class Book {
         }
 
         return message.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book book)) return false;
+        return bookId == book.bookId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(bookId);
     }
 
     @Override

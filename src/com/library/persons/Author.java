@@ -2,20 +2,15 @@ package com.library.persons;
 
 import com.library.Library;
 import com.library.books.Book;
-import com.library.interfaces.AuthorMethods;
 
-import java.util.Set;
+public class Author extends Person {
 
-public class Author extends Person implements AuthorMethods {
-
-    public Author(String name) {
-        super(name);
+    public Author(int id, String name) {
+        super(id, name);
     }
 
-    @Override
     public void writeBook(Book book) {
         getBooks().add(book);
-        Library.addBookStore(book);
         Library.getAuthors().put(this, getBooks());
     }
 
