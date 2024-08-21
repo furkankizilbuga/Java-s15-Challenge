@@ -1,5 +1,4 @@
 import com.library.Console;
-import com.library.Library;
 import com.library.books.Book;
 import com.library.books.Journals;
 import com.library.books.Literature;
@@ -30,10 +29,6 @@ public class Main {
 
         //writeBook
         //((Author) shakespeare).writeBook(new Literature(7,new LinkedHashSet<>(Set.of(shakespeare)), "A Midsummer Night's Dream", 20, 2));
-
-        //findBook(author)
-
-        //System.out.println(Library.findBook(shakespeare));
 
         Console.start();
 
